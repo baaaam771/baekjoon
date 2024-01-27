@@ -2,6 +2,8 @@
 
 [문제 링크](https://www.acmicpc.net/problem/1449) 
 
+### 어려웠음 1/27
+
 ### 성능 요약
 
 메모리: 31120 KB, 시간: 36 ms
