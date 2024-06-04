@@ -1,14 +1,27 @@
 import sys
-input = sys.stdin.readline
- 
-def num(m, n, x, y):
-    while x <= m * n:
-        if (x - y) % n == 0:
-            return x
-        x += m
-    return -1
- 
-t = int(input())
-for i in range(t):
-    m, n, x, y = map(int, input().split())
-    print(num(m, n, x, y))
+def euc(x, y):
+    q = []
+    while y:
+        q.append(x // y)
+        x, y = y, x % y
+    q.pop()
+    a, b = 0, 1
+    for i in q[::-1]:
+        a, b = b, a - i*b
+    return x, a, b
+
+
+def f():
+    M, N, x, y = [int(i) for i in sys.stdin.readline().split()]
+    d = x-y
+
+    g, a, b = euc(M, N)
+    if d % g:
+        return -1
+    k = d // g
+    K = x - k*a*M
+    return (K-1) % (M//g*N) + 1
+
+
+for _ in range(int(sys.stdin.readline())):
+    print(f())
