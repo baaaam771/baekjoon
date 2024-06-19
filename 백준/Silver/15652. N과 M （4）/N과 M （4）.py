@@ -1,22 +1,15 @@
-import sys
-sys.setrecursionlimit(10**6)
-n, m = map(int, input().split())
-# chk = [0] * n
-arr = []
-
-def dfs(dep, point):
-    if dep == m:
-        print(*arr)
+n,m = map(int, input().split())
+ 
+s = []
+ 
+def dfs(start):
+    if len(s)==m:
+        print(' '.join(map(str,s)))
         return
-    for i in range(point, n+1):
-        if len(arr) == 0:
-            arr.append(i)
-            dfs(dep+1, i)
-            arr.pop()
-        else:
-            if arr[-1] <= i:
-                arr.append(i)
-                dfs(dep+1, i)
-                arr.pop()
-
-dfs(0, 1)
+    
+    for i in range(start, n+1):
+        s.append(i)
+        dfs(i)
+        s.pop()
+    
+dfs(1)
