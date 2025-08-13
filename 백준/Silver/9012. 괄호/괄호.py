@@ -1,23 +1,16 @@
 n = int(input())
-ans=[]
 for i in range(n):
-    sym = list(input())
-
-    array = []
-
-    for i in sym:
-        if i == '(':
-            array.append("(")
-        else:
-            if "(" in array:
-                array.pop()
+    IsVPS = True
+    chk_arr = []
+    for j in input():
+        if j == ")":
+            if chk_arr:
+                chk_arr.pop()
             else:
-                array.append(")")
+                IsVPS = False
+        else:
+            chk_arr.append(j)
 
-    if len(array) == 0:
-        ans.append("YES")
-    else:
-        ans.append("NO")
-
-for i in ans:
-    print(i)
+    if chk_arr:
+        IsVPS = False
+    print("YES" if IsVPS else "NO")
