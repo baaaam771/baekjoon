@@ -1,19 +1,11 @@
 from collections import deque
 
-n= int(input())
-q = deque()
-for i in range(1, n+1):
-    q.append(i)
+n = int(input())
+arr = [i for i in range(1, n+1)]
+q = deque(arr)
 
-#print(q)
-
-while len(q)>1:
+while len(q) > 1:
     q.popleft()
-    #print(q)
-    if len(q)>1:
-        q.append(q.popleft())
-        #print(q)
-    else:
-        break
+    q.append(q.popleft())
 
-print(q.popleft())
+print(q[0])
