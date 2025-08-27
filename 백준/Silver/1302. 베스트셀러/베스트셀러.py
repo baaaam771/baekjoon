@@ -1,18 +1,18 @@
-dict={}
-
-n=int(input())
-for _ in range(n):
-    title = input()
-    if title in dict:
-        dict[title]+=1
-        # print(dict)
+books = {}
+for i in range(int(input())):
+    book = input()
+    if book in books:
+        books[book] += 1
     else:
-        dict[title]=1
-        # print(dict)
+        books[book] = 1
 
+ans = ''
+n = 0
+for i in books:
+    if books[i] > n:
+        n = books[i]
+        ans = i
+    if books[i] == n:
+        ans = min(ans, i)
 
-top =[k for k,v in dict.items() if max(dict.values()) == v]
-# print(top)
-top.sort()
-print(top[0])
-
+print(ans)
