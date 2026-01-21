@@ -1,16 +1,15 @@
-n = int(input())
-for i in range(n):
-    IsVPS = True
-    chk_arr = []
-    for j in input():
-        if j == ")":
-            if chk_arr:
-                chk_arr.pop()
-            else:
-                IsVPS = False
+for i in range(int(input())):
+    arr = list(input())
+    cnt = 0
+    ans = 'YES'
+    for i in arr:
+        if i == '(':
+            cnt += 1
         else:
-            chk_arr.append(j)
+            if cnt > 0:
+                cnt -= 1
+            else:
+                ans = 'NO'
 
-    if chk_arr:
-        IsVPS = False
-    print("YES" if IsVPS else "NO")
+    if cnt > 0: ans = 'NO'
+    print(ans)
