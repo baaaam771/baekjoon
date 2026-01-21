@@ -1,38 +1,27 @@
-import heapq, sys
+import heapq as hq
+import sys
 
-pq_pos = []
-pq_neg = []
+p_arr = []
+n_arr = []
 
-n = int(input())
-
-for _ in range(n):
-
-    ori = int(sys.stdin.readline())
-    if ori >0:
-        heapq.heappush(pq_pos, ori)
-        
-    elif ori<0:
-        heapq.heappush(pq_neg, -ori)
-       
-
-    elif ori==0:
-        if len(pq_pos)>0 and len(pq_neg)>0:
-            if abs(pq_pos[0])<abs(pq_neg[0]):
-               
-                print(heapq.heappop(pq_pos))
-
-            else:
-                print(-heapq.heappop(pq_neg))
-
-        elif len(pq_pos)==0 and len(pq_neg)!=0:
-            print(-heapq.heappop(pq_neg))
-
-        elif len(pq_neg)==0 and len(pq_pos)!=0:
-
-            print(heapq.heappop(pq_pos))
-
+for i in range(int(input())):
+    n = int(sys.stdin.readline())
+    if n != 0:
+        if n > 0:
+            hq.heappush(p_arr, n)
         else:
+            hq.heappush(n_arr, -n)
+    else:
+        if len(p_arr) == 0 and len(n_arr) > 0:
+            num = hq.heappop(n_arr)
+            print(-num)
+        elif len(p_arr) > 0 and len(n_arr) == 0:
+            print(hq.heappop(p_arr))
+        elif len(p_arr) == 0 and len(n_arr) == 0:
             print(0)
-
-
-
+        else:
+            if p_arr[0] < n_arr[0]:
+                print(hq.heappop(p_arr))
+            elif p_arr[0] >= n_arr[0]:
+                num = hq.heappop(n_arr)
+                print(-num)
