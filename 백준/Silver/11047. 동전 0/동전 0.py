@@ -1,21 +1,10 @@
-n, k = input().split()
-# print(n, k)
-coin = []
-min = 0
-money = int(k)
+n, k = map(int, input().split())
+coin = [int(input()) for _ in range(n)]
+ans = 0
 
+for i in range(len(coin)-1, -1, -1):
+    if k >= coin[i]:
+        ans += (k // coin[i])
+        k %= coin[i]
 
-for _ in range(int(n)):
-    coin.append(int(input()))
-
-coin.sort(reverse=True)
-# print(coin)
-
-for i in coin:
-    if money // i >= 1:
-        min += money//i
-        # print(min)
-        money = money % i
-        # print(money)
-       
-print(min)
+print(ans)
